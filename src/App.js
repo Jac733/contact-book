@@ -1,6 +1,7 @@
 import React from "react";
 import CreateContact from "./CreateContact";
 import Contacts from "./Contacts";
+import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -9,8 +10,10 @@ class App extends React.Component {
       loading: false,
       alldata: [],
       singledata: {
-        title: "",
-        author: ""
+        name: "",
+        firstname: "",
+        email: "",
+        birth: ""
       }
     };
     this.getContacts = this.getContacts.bind(this);
@@ -36,21 +39,27 @@ class App extends React.Component {
   }
 
   handleChange(event) {
-    var title = this.state.singledata.title;
-    var author = this.state.singledata.author;
-    if (event.target.name === "title") title = event.target.value;
-    else author = event.target.value;
+    var name = this.state.singledata.name;
+    var firstname = this.state.singledata.firstname;
+    var email = this.state.singledata.email;
+    var birth = this.state.singledata.birth;
+    if (event.target.name === "name") name = event.target.value;
+    else if (event.target.name === "firstname") firstname = event.target.value;
+    else if (event.target.name === "email") email = event.target.value;
+    else birth = event.target.value;
 
     this.setState({
       singledata: {
-        title: title,
-        author: author
+        name: name,
+        firstname: firstname,
+        email: email,
+        birth: birth,
       }
     });
   }
 
   createContact() {
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    fetch("http://localhost:3002/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -59,8 +68,10 @@ class App extends React.Component {
     }).then(
       this.setState({
         singledata: {
-          title: "",
-          author: ""
+          name: "",
+          firstname: "",
+          email: "",
+          birth: ""
         }
       })
     );
@@ -70,18 +81,22 @@ class App extends React.Component {
     this.setState(
       {
         singledata: {
-          title: "Loading...",
-          author: "Loading..."
+          name: "Loading...",
+          firstname: "Loading...",
+          email: "Loading...",
+          birth: "Loading..."
         }
       },
       () => {
-        fetch("https://jsonplaceholder.typicode.com/posts/" + id)
+        fetch("http://localhost:3002/contacts/" + id)
           .then(res => res.json())
           .then(result => {
             this.setState({
               singledata: {
-                title: result.title,
-                author: result.author ? result.author : ""
+                name: result.name,
+                firstname: result.firstname,
+                email: result.email,
+                birth: result.birth
               }
             });
           });
@@ -90,7 +105,7 @@ class App extends React.Component {
   }
 
   updateContact(event, id) {
-    fetch("https://jsonplaceholder.typicode.com/posts/" + id, {
+    fetch("http://localhost:3002/contacts/" + id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -101,8 +116,10 @@ class App extends React.Component {
       .then(result => {
         this.setState({
           singledata: {
-            title: "",
-            author: ""
+            name: "",
+            firstname: "",
+            email: "",
+            birth: ""
           }
         });
         this.getContacts();
@@ -110,15 +127,17 @@ class App extends React.Component {
   }
 
   deleteContact(event, id) {
-    fetch("https://jsonplaceholder.typicode.com/posts/" + id, {
+    fetch("http://localhost:3002/contacts/" + id, {
       method: "DELETE"
     })
       .then(res => res.json())
       .then(result => {
         this.setState({
           singledata: {
-            title: "",
-            author: ""
+            name: "",
+            firstname: "",
+            email: "",
+            birth: ""
           }
         });
         this.getContacts();
@@ -126,8 +145,8 @@ class App extends React.Component {
   }
 
   render() {
-    const contactTable = this.state.loading ? (
-      <span>Loading...Is usually slower than localhost...</span>
+    const contactList = this.state.loading ? (
+      <span>Loading...</span>
     ) : (
       <Contacts
         alldata={this.state.alldata}
@@ -140,13 +159,14 @@ class App extends React.Component {
     );
     return (
       <div className="container">
-        <span className="title-bar">
+        <span className="name-bar">
+          <h1>Contact Book - Airey Jacques 4A CTO</h1>
           <button
             type="button"
             className="btn btn-primary"
             onClick={this.getContacts}
           >
-            Get Contacts
+            Load Contacts
           </button>
           <CreateContact
             singledata={this.state.singledata}
@@ -155,7 +175,7 @@ class App extends React.Component {
           />
         </span>
         <br />
-        {contactTable}
+        {contactList}
       </div>
     );
   }

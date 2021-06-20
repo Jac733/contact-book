@@ -1,32 +1,31 @@
 import React from 'react'
 import UpdateContact from './UpdateContact';
-import DeleteContact from './DeleteContact';
 
 function Contacts(props) {
     var contacts = [];
     props.alldata.forEach(element => {
         contacts.push(
-        <div key={element.id}>
-            <td>{element.id}</td>
-            <td>{element.name}</td>
-            <td>{element.firstname}</td>
-            <td><UpdateContact
+        <div key={element.id} className="contact">
+            <div className="names">
+                <div className="lastname">{element.name}</div>
+                <div className="firstname">{element.firstname}</div>
+            </div>
+            <div className="info">
+                <div className="email">{element.email}</div>
+                <div className="birth">{element.birth}</div>
+            </div>
+            <UpdateContact
                 elementId={element.id}
                 singledata={props.singledata}
                 getContact={props.getContact}
                 updateContact={props.updateContact}
-                handleChange={props.handleChange}></UpdateContact></td>
-            <td>
-                <DeleteContact
-                elementId={element.id}
-                singledata={props.singledata}
-                getContact={props.getContact}
-                deleteContact={props.deleteContact}></DeleteContact>
-            </td>
+                deleteContact={props.deleteContact}
+                handleChange={props.handleChange}>
+            </UpdateContact>
         </div>)
     });
     return(
-      <div>
+      <div id="contact-list">
         {contacts}
       </div>
     )

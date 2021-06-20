@@ -22,26 +22,47 @@ function CreateContact(props) {
           <div className="modal-content">
             <div className="modal-header">
               <span className="modal-title" id="exampleModalLabel">
-                New List
+                New Contact
               </span>
               <button type="button" className="close" data-dismiss="modal">
                 <span>&times;</span>
               </button>
             </div>
             <div className="modal-body">
+              Nom
               <input
+                required={true}
                 type="text"
-                placeholder="title"
-                name="title"
-                value={props.singledata.title}
+                placeholder="Nom"
+                name="name"
+                value={props.singledata.name}
                 onChange={props.handleChange}
               />
-              <br />
+              Prénom
               <input
+                required={true}
                 type="text"
-                placeholder="author"
-                name="author"
-                value={props.singledata.author}
+                placeholder="Prénom"
+                name="firstname"
+                value={props.singledata.firstname}
+                onChange={props.handleChange}
+              />
+              E-mail
+              <input
+                required={true}
+                type="text"
+                placeholder="Email"
+                name="email"
+                value={props.singledata.email}
+                onChange={props.handleChange}
+              />
+              Date de naissance
+              <input
+                required={true}
+                type="text"
+                placeholder="Date de naissance"
+                name="birth"
+                value={props.singledata.birth}
                 onChange={props.handleChange}
               />
             </div>
@@ -57,7 +78,7 @@ function CreateContact(props) {
                 type="button"
                 className="btn btn-primary"
                 data-dismiss="modal"
-                onClick={props.createList}
+                onClick={props.createContact}
               >
                 Create
               </button>
