@@ -1,0 +1,35 @@
+{
+    "contacts": [
+      {
+        "id": 1,
+        "name": "Airey",
+        "firstname": "Jacques",
+        "email": "jacques.airey@eemi.com",
+        "birth": "02/09/1996"
+        
+      },
+      {
+        "id": 2,
+        "name": "Doe",
+        "firstname": "Jane",
+        "email": "john.doe@gmail.com",
+        "birth": "03/08/1998"
+        
+      },
+      {
+        "id": 3,
+        "name": "Dent",
+        "firstname": "Arthur",
+        "email": "dontpanic@hotmail.com",
+        "birth": "20/04/1979"
+        
+      },
+      {
+        "id": 4,
+        "name": "Kamisato",
+        "firstname": "Ayaka",
+        "email": "cryosword@inazuma.com",
+        "birth": "02/09/1991"
+      }
+    ]
+  }

@@ -1,3 +1,23 @@
+## To get started :
+
+after cloning the repository, go to the root directory and run:
+### npm install
+
+then
+
+### json-server --watch db.json --port 3002
+
+then
+
+### npm start
+
+If there is an error finding react-scripts, use
+### npm install react-scripts
+### npm install
+### node_modules/.bin/react-scripts start
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
